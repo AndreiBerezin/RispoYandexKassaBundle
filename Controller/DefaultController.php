@@ -123,10 +123,10 @@ class DefaultController extends Controller
                     $request->get('orderSumAmount'),
                     $request->get('orderSumCurrencyPaycash'),
                     $request->get('orderSumBankPaycash'),
-                    $this->container->getParameter('rispo_yandexkassa_shopId'),
+                    $this->getParameter('rispo_yandexkassa_shopId'),
                     $request->get('invoiceId'),
                     $request->get('customerNumber'),
-                    $this->container->getParameter('rispo_yandexkassa_ShopPassword')
+                    $this->getParameter('rispo_yandexkassa_ShopPassword')
                 ]
             )
         );
