@@ -1,5 +1,5 @@
 {
-  "name": "rispo/yandexkassa-bundle",
+  "name": "andreiberezin/yandexkassa-bundle",
   "type": "symfony-bundle",
   "description": "Bundle allows you to accept YandexKassa payments",
   "keywords": ["payment", "yandexkassa"],

@@ -1,10 +1,10 @@
 # RispoYandexKassaBundle
 
-For Symfony (tested for version 2.8)
+For Symfony 3
 
 http://jmsyst.com/bundles/JMSPaymentCoreBundle/master/payment_backends
 
-Use Symfony 2 Event Listener from payment_avisio request.
+Use Symfony Event Listener from payment_avisio request.
 
 For more info, see the docs located at: Resources/doc
 
