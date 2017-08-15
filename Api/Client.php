@@ -1,17 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: al
- * Date: 18.06.16
- * Time: 22:35
- */
 
 namespace Rispo\YandexKassaBundle\Api;
 
+use JMS\Payment\CoreBundle\Model\ExtendedDataInterface;
 use JMS\Payment\CoreBundle\Model\FinancialTransactionInterface;
+use JMS\Payment\CoreBundle\Model\PaymentInstructionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use JMS\Payment\CoreBundle\Plugin\PluginInterface;
-use FOS\UserBundle\Model\User;
+use Symfony\Component\Security\Core\User\User;
 
 /**
  * Class Client
@@ -19,7 +14,7 @@ use FOS\UserBundle\Model\User;
  */
 class Client
 {
-    /** @var Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface */
+    /** @var TokenStorageInterface */
     private $tokenStorage;
 
     /** @var string */
@@ -51,10 +46,10 @@ class Client
         return $this->test ? 'https://demomoney.yandex.ru/eshop.xml' : 'https://money.yandex.ru/eshop.xml';
     }
 
-
     /**
      * @param FinancialTransactionInterface $transaction
      * @return string
+     * @throws \Exception
      */
     public function getRedirectUrl(FinancialTransactionInterface $transaction)
     {
@@ -75,7 +70,7 @@ class Client
 
         $user = $this->tokenStorage->getToken()->getUser();
         if ($user instanceof User) {
-            $data['customerNumber'] = $user->getId();
+            $data['customerNumber'] = $user->getUsername();
         } else {
             $data['customerNumber'] = 0;
         }

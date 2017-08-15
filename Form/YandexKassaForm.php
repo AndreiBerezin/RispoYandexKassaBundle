@@ -1,19 +1,11 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: al
- * Date: 18.06.16
- * Time: 21:23
- */
-
-namespace Rispo\YandexKassaBundle\Form\Type;
+namespace Rispo\YandexKassaBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-
-class YandexKassaType extends AbstractType
+class YandexKassaForm extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -22,13 +14,5 @@ class YandexKassaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'yandexkassa';
     }
 }
