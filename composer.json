@@ -6,7 +6,7 @@
   "license": "MIT",
   "require": {
     "php": ">=5.3.2",
-    "symfony/framework-bundle": ">=3.0",
+    "symfony/framework-bundle": "^3.0",
     "jms/payment-core-bundle": "~1.0",
     "guzzlehttp/guzzle": "^6.2"
   },
