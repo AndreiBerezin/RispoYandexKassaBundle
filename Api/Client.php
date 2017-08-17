@@ -2,11 +2,9 @@
 
 namespace Rispo\YandexKassaBundle\Api;
 
-use JMS\Payment\CoreBundle\Model\ExtendedDataInterface;
 use JMS\Payment\CoreBundle\Model\FinancialTransactionInterface;
 use JMS\Payment\CoreBundle\Model\PaymentInstructionInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\User\User;
 
 /**
  * Class Client
@@ -55,35 +53,24 @@ class Client
     {
         /** @var PaymentInstructionInterface $instruction */
         $instruction = $transaction->getPayment()->getPaymentInstruction();
-        $inv_id = $instruction->getId();
-        /** @var ExtendedDataInterface $data */
-        $data = $transaction->getExtendedData();
-        $data->set('inv_id', $inv_id);
 
-        $data = [
+        $extendedData = $transaction->getExtendedData()->all();
+        $data = [];
+        foreach ($extendedData as $name => $item) {
+            $data[$name] = $item[0];
+        }
+        $data = array_merge($data, [
             'shopId' => $this->shopId,
             'scid' => $this->scid,
             'Sum' => $transaction->getRequestedAmount(),
-            'cms_name' => 'symfony2-github',
+            'cms_name' => 'symfony3-github',
             'orderNumber' => $instruction->getId()
-        ];
+        ]);
 
-        $user = $this->tokenStorage->getToken()->getUser();
-        if ($user instanceof User) {
-            $data['customerNumber'] = $user->getUsername();
-        } else {
-            $data['customerNumber'] = 0;
-        }
-
-        $url = $this->getWebServerUrl();
-
-        // Initialize Guzzle client
         $client = new \GuzzleHttp\Client();
-
-        // Create a POST request
         $response = $client->request(
             'POST',
-            $url,
+            $this->getWebServerUrl(),
             [
                 'form_params' => $data,
                 'allow_redirects' => false
