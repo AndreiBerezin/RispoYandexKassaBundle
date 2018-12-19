@@ -1,15 +1,8 @@
 # RispoYandexKassaBundle
 
 For Symfony 3
+**Has support for 54-FZ** (additional fields are filled in the example ↓)
 
-http://jmsyst.com/bundles/JMSPaymentCoreBundle/master/payment_backends
-
-Use Symfony Event Listener from payment_avisio request.
-
-For more info, see the docs located at: Resources/doc
-
--------------
-
-Made in [RiSPO](http://rispo.ru)
+Example is located in https://github.com/AndreiBerezin/YandexKassaExample
  
  
